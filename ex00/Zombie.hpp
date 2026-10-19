@@ -3,13 +3,17 @@
 
 # include <iostream>
 
-class Zombies
+class Zombie
 {
 private:
 	std::string name;
 public:
-	Zombie();
-	void announce();
+	Zombie(std::string name);
+	~Zombie();
+	void announce() const;
 };
+
+Zombie* newZombie(std::string name);
+void	randomChump(std::string name);
 
 #endif //ZOMBIE_HPP
