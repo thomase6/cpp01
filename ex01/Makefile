@@ -3,7 +3,8 @@ NAME = horde
 #ingredients 
 
 SRCS =	main.cpp \
-		Zombie.cpp 
+		Zombie.cpp \
+		zombieHorde.cpp
 CPP = c++
 CPPFLAGS = -Wall -Wextra -Werror -std=c++98
 ODIR = obj/
