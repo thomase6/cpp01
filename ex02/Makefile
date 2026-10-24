@@ -4,9 +4,10 @@ NAME = brain
 
 SRCS =	main.cpp
 CPP = c++
-CPPFLAGS = -Wall -Wextra -Werror -std=c++98
+CPPFLAGS = -Wall -Wextra -Werror -std=c++98 -Wpedantic -MP -MMD
 ODIR = obj/
 OBJS = $(SRCS:%.cpp=$(ODIR)%.o)
+DEPS = $(OBJS:.o=.d)
 
 #utensils
 
@@ -24,6 +25,8 @@ $(ODIR)%.o: %.cpp
 
 $(NAME): $(OBJS)
 		 @$(CXX) $(CXXFLAGS) $(OBJS) -o $(NAME)
+
+-include $(DEPS)
 
 clean:
 		@$(RM) $(OBJS)
