@@ -2,6 +2,26 @@
 #include <string>
 #include <fstream>
 
+static std::string replaceAll(const std::string& content, const std::string& string1, const std::string& string2)
+{
+	std::string res;
+	size_t i = 0;
+	size_t match;
+	while (1)
+	{
+		match = content.find(string1, i); // returns std::string::npos(-1) if no match is found 
+		if (match == std::string::npos)
+		{
+			res += content.substr(i);
+			break;
+		}
+		res += content.substr(i, match - i);
+		res += string2;
+		i = match + string1.length();
+	}
+	return res;
+}
+
 int main(int ac, char** av)
 {
 	if (ac != 4)
@@ -28,23 +48,15 @@ int main(int ac, char** av)
 	while (std::getline(inFile, line)) //getline strips the /n so we have to append the lines to content and then add a /n
 	{
 		content += line;
-		content += '\n';
+		if (!inFile.eof()) // state flag that shows that it tried to read past the eof
+			content += '\n';
 	}
-	std::string res;
-	size_t i = 0;
-	size_t match;
-	while (1)
+	if (inFile.bad()) // just a state flag from stream that shows there was an error while reading
 	{
-		match = content.find(string1, i); // returns std::string::npos(-1) if no match is found 
-		if (match == std::string::npos)
-		{
-			res += content.substr(i);
-			break;
-		}
-		res += content.substr(i, match - i);
-		res += string2;
-		i = match + string1.length();
+		std::cout << "error while reading the file.\n";
+		return 1;
 	}
+	std::string res = replaceAll(content, string1, string2);
 	std::ofstream outFile((filename + ".replace").c_str()); // the ".replace" is used to avoid using the original file when making the outfile
 	if (!outFile.is_open())
 	{

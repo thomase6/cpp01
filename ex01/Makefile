@@ -23,10 +23,10 @@ all: $(NAME)
 
 $(ODIR)%.o: %.cpp
 			@$(DIR_DUP)
-			@$(CXX) $(CXXFLAGS) -c $< -o $@
+			@$(CPP) $(CPPFLAGS) -c $< -o $@
 
 $(NAME): $(OBJS)
-		 @$(CXX) $(CXXFLAGS) $(OBJS) -o $(NAME)
+		 @$(CPP) $(CPPFLAGS) $(OBJS) -o $(NAME)
 
 -include $(DEPS)
 

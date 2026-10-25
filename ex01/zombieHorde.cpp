@@ -1,11 +1,11 @@
 # include "Zombie.hpp"
 
-Zombie* zombieHorde(int n, std::string name)
+Zombie* zombieHorde(int N, std::string name)
 {
-	if (n <= 0)
+	if (N <= 0)
 		return NULL;
-	Zombie* horde = new Zombie[n];
-	for (int i = 0; i <= n - 1; i++)
+	Zombie* horde = new Zombie[N];
+	for (int i = 0; i <= N - 1; i++)
 	{
 		horde[i].setName(name);
 	}

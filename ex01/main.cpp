@@ -2,9 +2,9 @@
 
 int main()
 {
-	int num = 10;
+	int num = 100;
 
-	Zombie* horde = zombieHorde(num, "carlos");
+	Zombie* horde = zombieHorde(num, "Carlos");
 	if (horde != NULL)
 	{
 		for (int i = 0; i < num; i++)
